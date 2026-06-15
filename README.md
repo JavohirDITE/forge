@@ -9,6 +9,10 @@
 A headless CMS for developers: model content with typed fields, edit it in a
 clean admin panel, and deliver it anywhere through a key-protected API.
 
+[![CI](https://github.com/JavohirDITE/forge/actions/workflows/ci.yml/badge.svg)](https://github.com/JavohirDITE/forge/actions/workflows/ci.yml)
+[![Live demo](https://img.shields.io/badge/demo-live-f97316?style=flat-square&logo=vercel&logoColor=white)](https://forge-black-three.vercel.app)
+[![Made with Next.js](https://img.shields.io/badge/Next.js-16-000?style=flat-square&logo=nextdotjs)](https://nextjs.org)
+
 **🔗 [Live demo](https://forge-black-three.vercel.app)** — sign in with `demo@forge.app` / `password123`
 
 [Stack](#stack) · [Features](#features) · [Delivery API](#delivery-api) · [Getting started](#getting-started)
