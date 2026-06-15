@@ -1,0 +1,148 @@
+// Forge — a headless CMS. PostgreSQL + Prisma.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+enum FieldType {
+  TEXT
+  RICHTEXT
+  NUMBER
+  BOOLEAN
+  DATE
+  SELECT
+  MEDIA
+}
+
+enum EntryStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String
+  passwordHash String
+  avatarColor  String        @default("#f97316")
+  createdAt    DateTime      @default(now())
+
+  memberships  SpaceMember[]
+  ownedSpaces  Space[]       @relation("SpaceOwner")
+  entries      Entry[]
+}
+
+model Space {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  ownerId     String
+  owner       User          @relation("SpaceOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+
+  members      SpaceMember[]
+  contentTypes ContentType[]
+  entries      Entry[]
+  assets       Asset[]
+  apiKeys      ApiKey[]
+}
+
+model SpaceMember {
+  id        String   @id @default(cuid())
+  role      Role     @default(EDITOR)
+  spaceId   String
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([spaceId, userId])
+  @@index([userId])
+}
+
+model ContentType {
+  id          String   @id @default(cuid())
+  name        String   // "Blog Post"
+  apiId       String   // "blogPost" — used in the delivery API
+  description String?
+  icon        String   @default("FileText")
+  spaceId     String
+  space       Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  fields      Field[]
+  entries     Entry[]
+  createdAt   DateTime @default(now())
+
+  @@unique([spaceId, apiId])
+}
+
+model Field {
+  id            String      @id @default(cuid())
+  name          String      // "Title"
+  apiId         String      // "title"
+  type          FieldType
+  required      Boolean     @default(false)
+  order         Int         @default(0)
+  config        Json        @default("{}") // e.g. { options: ["a","b"] } for SELECT
+  contentTypeId String
+  contentType   ContentType @relation(fields: [contentTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([contentTypeId, apiId])
+}
+
+model Entry {
+  id            String      @id @default(cuid())
+  status        EntryStatus @default(DRAFT)
+  data          Json        @default("{}") // keyed by field.apiId
+  contentTypeId String
+  contentType   ContentType @relation(fields: [contentTypeId], references: [id], onDelete: Cascade)
+  spaceId       String
+  space         Space       @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt   DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([contentTypeId, status])
+  @@index([spaceId])
+}
+
+model Asset {
+  id        String   @id @default(cuid())
+  url       String
+  filename  String
+  mimeType  String
+  size      Int      @default(0)
+  alt       String?
+  width     Int?
+  height    Int?
+  spaceId   String
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([spaceId])
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  name      String
+  key       String   @unique
+  spaceId   String
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  lastUsed  DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([spaceId])
+}
