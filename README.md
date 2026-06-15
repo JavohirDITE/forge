@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./assets/banner.svg" alt="Forge" width="100%" />
+
 # 🔨 Forge
 
 **Content infrastructure, your way.**

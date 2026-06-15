@@ -1,0 +1,49 @@
+<svg width="1280" height="340" viewBox="0 0 1280 340" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c0a08"/>
+      <stop offset="1" stop-color="#16110b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(980 30) rotate(130) scale(440)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f97316" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="64" y1="0" x2="640" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fdba74"/>
+      <stop offset="0.5" stop-color="#fb923c"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="340" rx="20" fill="url(#bg)"/>
+  <rect width="1280" height="340" rx="20" fill="url(#glow)"/>
+  <rect x="0.5" y="0.5" width="1279" height="339" rx="20" stroke="#2c2620"/>
+
+  <g transform="translate(64 78)">
+    <rect width="44" height="44" rx="11" fill="#f97316"/>
+    <path d="M14 30 L26 12 L30 16 L18 34 Z M27 11 L31 15 L34 12 L30 8 Z" fill="#fff"/>
+    <text x="60" y="34" font-size="40" font-weight="700" fill="#ece6dd">Forge</text>
+  </g>
+
+  <text x="64" y="176" font-size="34" font-weight="600" fill="url(#title)">A headless CMS for developers</text>
+  <text x="64" y="214" font-size="18" fill="#a39a8c">Model content · edit in a clean admin · deliver via a typed, key-protected API</text>
+
+  <g transform="translate(64 250)" font-size="14" fill="#d6cdbf">
+    <g><rect width="118" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="59" y="20" text-anchor="middle">Next.js 16</text></g>
+    <g transform="translate(130 0)"><rect width="80" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="40" y="20" text-anchor="middle">tRPC</text></g>
+    <g transform="translate(222 0)"><rect width="92" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="46" y="20" text-anchor="middle">Prisma</text></g>
+    <g transform="translate(326 0)"><rect width="118" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="59" y="20" text-anchor="middle">PostgreSQL</text></g>
+    <g transform="translate(456 0)"><rect width="80" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="40" y="20" text-anchor="middle">TipTap</text></g>
+    <g transform="translate(548 0)"><rect width="84" height="30" rx="8" fill="#1a1611" stroke="#2c2620"/><text x="42" y="20" text-anchor="middle">Docker</text></g>
+  </g>
+
+  <g transform="translate(905 78)">
+    <rect width="312" height="184" rx="12" fill="#14110d" stroke="#2c2620"/>
+    <text x="20" y="32" font-size="12" font-family="monospace" fill="#726a5e">GET /api/cdn/blog/post</text>
+    <rect x="20" y="46" width="180" height="10" rx="5" fill="#2c2620"/>
+    <rect x="20" y="66" width="140" height="10" rx="5" fill="#2c2620"/>
+    <rect x="20" y="92" width="272" height="1" fill="#2c2620"/>
+    <text x="20" y="120" font-size="12" font-family="monospace" fill="#fb923c">"title": "Headless wins"</text>
+    <text x="20" y="142" font-size="12" font-family="monospace" fill="#a39a8c">"status": "PUBLISHED"</text>
+    <text x="20" y="164" font-size="12" font-family="monospace" fill="#a39a8c">"category": "Engineering"</text>
+  </g>
+</svg>
