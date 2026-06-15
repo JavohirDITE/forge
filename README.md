@@ -7,6 +7,8 @@
 A headless CMS for developers: model content with typed fields, edit it in a
 clean admin panel, and deliver it anywhere through a key-protected API.
 
+**🔗 [Live demo](https://forge-black-three.vercel.app)** — sign in with `demo@forge.app` / `password123`
+
 [Stack](#stack) · [Features](#features) · [Delivery API](#delivery-api) · [Getting started](#getting-started)
 
 </div>
